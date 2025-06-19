@@ -24,8 +24,7 @@ const MAX_FILE_SIZE = 20 * 1024 * 1024
 
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 const OPENROUTER_MODEL = "deepseek/deepseek-r1-0528-qwen3-8b:free"
-const OPENROUTER_API_KEY =
-	"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"
+const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY
 
 function formatSummaryParagraphs(text) {
 	return text
