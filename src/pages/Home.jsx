@@ -24,7 +24,7 @@ export default function Home() {
 				/>
 			</div>
 
-			<nav className="flex items-center justify-between px-12 py-4 relative z-10">
+			<nav className="flex items-center justify-between px-6 sm:px-12 py-4 relative z-10">
 				<motion.div 
 					initial={{ opacity: 0, x: -20 }}
 					animate={{ opacity: 1, x: 0 }}
@@ -54,10 +54,10 @@ export default function Home() {
 				</motion.div>
 			</nav>
 
-			<main className="container mx-auto px-12 py-16 relative z-10">
-				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 mb-16">
-					<div className="flex flex-col justify-center space-y-8">
-						<div className="flex flex-wrap gap-4">
+			<main className="container mx-auto px-6 sm:px-12 py-16 relative z-10">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+					<div className="flex flex-col justify-center text-center lg:text-left space-y-8">
+						<div className="flex flex-wrap justify-center lg:justify-start gap-x-4">
 							{words.map((word, i) => (
 								<motion.span
 									key={word}
@@ -68,7 +68,7 @@ export default function Home() {
 										delay: i * 0.1,
 										ease: [0.2, 0.65, 0.3, 0.9],
 									}}
-									className="text-7xl md:text-8xl font-semibold text-white"
+									className="text-6xl sm:text-7xl md:text-8xl font-semibold text-white"
 								>
 									{word}{" "}
 								</motion.span>
@@ -78,7 +78,7 @@ export default function Home() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5, delay: 0.2 }}
-							className="flex gap-4"
+							className="flex gap-4 justify-center lg:justify-start"
 						>
 							<Button
 								variant="default"
@@ -91,7 +91,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					
 					<motion.div 
 						initial={{ opacity: 0, y: 20 }}

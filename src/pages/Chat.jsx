@@ -1,48 +1,44 @@
 import { motion } from "framer-motion"
 import DocumentUpload from "@/components/DocumentUpload"
-import { Link } from "react-router-dom"
-import logo from "@/assets/logo.svg"
-import { Button } from "@/components/ui/button"
+import AppSidebar from "@/components/AppSidebar"
+import { SidebarProvider, useSidebar } from "@/components/ui/sidebar"
+import { useAuth } from "@clerk/clerk-react"
+import { cn } from "@/lib/utils"
 
-export default function Chat() {
+function ChatLayout() {
+	const { open } = useSidebar()
 	return (
-		<div className="relative min-h-screen overflow-hidden">
-			{/* Radiant Gradient Background */}
-			<div className="fixed inset-0 -z-10 w-full h-full">
-				<div
-					className="w-full h-full"
-					style={{
-						background:
-							"radial-gradient(ellipse 80% 60% at 50% 20%, #38bdf8 0%, #93c5fd 40%, #f1f5f9 100%)",
-						opacity: 1,
-						filter: "blur(40px)",
-					}}
-				/>
-			</div>
-
-			<motion.nav 
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-				className="flex items-center justify-between px-12 py-4 relative z-10"
-			>
-				<Link to="/" className="flex items-center gap-2">
-					<img src={logo} alt="logo" className="w-5 h-5" />
-					<span className="text-2xl text-white font-bold">Fern</span>
-				</Link>
-				<div className="flex items-center gap-4">
-					<Button variant="ghost" className="text-sm text-white">Privacy</Button>
-					<Button variant="default" className="bg-[#1E1E1E] text-white">About us</Button>
-				</div>
-			</motion.nav>
-
+		<main
+			className={cn(
+				"transition-all duration-300 ease-in-out",
+				{
+					"lg:ml-72": open,
+					"lg:ml-14": !open,
+				},
+				"lg:bg-muted/50"
+			)}
+		>
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, delay: 0.2 }}
+				className="p-4"
 			>
 				<DocumentUpload />
 			</motion.div>
-		</div>
+		</main>
+	)
+}
+
+export default function Chat() {
+	const { isLoaded, isSignedIn } = useAuth()
+
+	return (
+		<SidebarProvider>
+			<div className="w-full max-w-screen-4xl mx-auto min-h-screen bg-background">
+				{isLoaded && isSignedIn && <AppSidebar />}
+				<ChatLayout />
+			</div>
+		</SidebarProvider>
 	)
 } 
