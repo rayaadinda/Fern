@@ -38,11 +38,11 @@ function formatSummaryParagraphs(text) {
 
 function stripMarkdown(text) {
 	return text
-		.replace(/\*\*([^*]+)\*\*/g, '$1') // **bold**
-		.replace(/\*([^*]+)\*/g, '$1')       // *italic*
-		.replace(/`([^`]+)`/g, '$1')           // `code`
-		.replace(/__([^_]+)__/g, '$1')         // __bold__
-		.replace(/_([^_]+)_/g, '$1');          // _italic_
+		.replace(/\*\*([^*]+)\*\*/g, '$1') 
+		.replace(/\*([^*]+)\*/g, '$1')      
+		.replace(/`([^`]+)`/g, '$1')          
+		.replace(/__([^_]+)__/g, '$1')         
+		.replace(/_([^_]+)_/g, '$1');         
 }
 
 export default function DocumentUpload() {
@@ -176,7 +176,7 @@ export default function DocumentUpload() {
 
 		try {
 			let prompt = userMessage
-			let systemMessage = "Anda adalah asisten AI yang sangat terstruktur. Selalu jawab dalam bahasa Indonesia, tanpa bullet, tanpa tanda bintang, dan tanpa markdown. Pisahkan setiap bagian dengan satu baris kosong agar mudah dibaca."
+			let systemMessage = "Anda adalah asisten AI yang sangat terstruktur. Selalu jawab dalam bahasa Indonesia, tanpa bullet, tanpa tanda bintang, dan tanpa markdown. Pisahkan setiap paragraf dengan satu baris kosong agar mudah dibaca. berikan gap beberapa baris antara setiap paragraf."
 
 			if (userMessage.trim().toLowerCase() === "summarize" && pdfText) {
 				const firstLine = pdfText.split("\n")[0].trim()
@@ -339,9 +339,9 @@ export default function DocumentUpload() {
 				</div>
 
 				<div className="relative flex items-center">
-					<div className="flex-1 rounded-xl border border-gray-800 bg-white p-2">
+					<div className="flex-1 rounded-xl border-gray-800 bg-white p-2">
 						<div className="flex items-center gap-2">
-							<button className="p-2 hover:bg-gray-800/50 rounded-lg transition-colors">
+							<button className="p-2 hover:bg-gray-400/50 rounded-lg transition-colors">
 								<Plus className="h-5 w-5 text-black" />
 							</button>
 
@@ -359,9 +359,9 @@ export default function DocumentUpload() {
 								disabled={!pdfText}
 							/>
 
-							<div className="flex items-center gap-2 border-l text-right border-gray-700 pl-2">
+							<div className="flex items-center gap-2 border-l text-right pl-2">
 								<button
-									className="p-2 hover:bg-gray-800/50 rounded-lg transition-colors disabled:opacity-50"
+									className="p-2 hover:bg-gray-400/50 rounded-lg transition-colors disabled:opacity-50"
 									disabled={!message.trim() || isLoading || !pdfText}
 									onClick={handleSend}
 								>

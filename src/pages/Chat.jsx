@@ -13,9 +13,9 @@ export default function Chat() {
 					className="w-full h-full"
 					style={{
 						background:
-							"radial-gradient(ellipse 80% 60% at 50% 20%, #a5b4fc 0%, #6366f1 40%, #f1f5f9 100%)",
+							"radial-gradient(ellipse 80% 60% at 50% 20%, #38bdf8 0%, #93c5fd 40%, #f1f5f9 100%)",
 						opacity: 1,
-						filter: "blur(0px)",
+						filter: "blur(40px)",
 					}}
 				/>
 			</div>
